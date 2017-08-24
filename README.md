@@ -575,5 +575,5 @@
 
 bug提示 在农历状态下显示不太友好 因本人项目不需要显示农历如图所未：
 
-![](images/nlbug.png)
+![](images/nlbug.gif)
 
