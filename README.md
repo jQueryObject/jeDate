@@ -538,5 +538,37 @@
 
 更改的js代码使之适应本人项目:
 ```
+  jedfn.orien = function(obj, self, pos) {
+        var tops, leris, ortop, orleri, rect = jet.fixed ? self[0].getBoundingClientRect() : obj[0].getBoundingClientRect();
+ /*       console.log(self[0]);
+        console.log(self[0].getBoundingClientRect());*/
+        if(jet.fixed) {
+            //根据目标元素计算弹层位置
+           /* console.log(jet);
+            console.log(jet.winarea(1));
+            console.log(obj.outerWidth()/1.5);
+            console.log(rect);
+            console.log(rect.right);
+            console.log(rect.right + obj.outerWidth() / 1.5 >= jet.winarea(1));
+            console.log(rect.right - obj.outerWidth());
+            console.log(rect.left + (pos ? 0 : jet.docScroll(1)));*/
+
+
+           /* leris = rect.right + obj.outerWidth() / 1.5 >= jet.winarea(1) ?
+            rect.right - obj.outerWidth() :
+            rect.left + (pos ? 0 : jet.docScroll(1));*/
+
+            leris = rect.left + (pos ? 0 : jet.docScroll(1));
+            tops = rect.bottom + obj.outerHeight() / 1 <= jet.winarea() ? rect.bottom - 1 : rect.top > obj.outerHeight() / 1.5 ? rect.top - obj.outerHeight() - 1 : jet.winarea() - obj.outerHeight();
+            ortop = Math.max(tops + (pos ? 0 :jet.docScroll()) + 1, 1) + "px", orleri = leris + "px";
+        }else{
+            //弹层位置位于页面上下左右居中
+            ortop = "50%",
+                orleri = "50%";
+            obj.css({"margin-top":-(rect.height / 2),"margin-left":-(rect.width / 2)});
+        }
+        //console.log(orleri);
+        obj.css({"top":ortop,"left":orleri});
+    };
 ```
 
